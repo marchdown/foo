@@ -21,17 +21,18 @@ void fahr2cel()
   upper = 300;
   step  = 20;
 
-  fahr = lower; // type coercion
+  fahr = upper; // type coercion
+  //char heading[80] = "\nFahrenheit to Celsius conversion table\n"
 
   for(int i = 0; i < 40; i++) printf("#");
   printf("\nFahrenheit to Celsius conversion table\n");
   for(int i = 0; i < 40; i++) printf("#");
   printf("\n");
 
-  while (fahr <= upper) {
+  while (fahr >= lower) {
     celsius = (fahr - 32) * (5./9);
     printf("%.0f\t%6.2f\n", fahr, celsius);
-    fahr = fahr + step;
+    fahr = fahr - step;
   }
   printf("\n");
 }
