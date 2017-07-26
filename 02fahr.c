@@ -1,5 +1,11 @@
 #include <stdio.h>
 
+
+#define LOWER 0.
+#define UPPER 300.
+#define STEP  20.
+
+
 /* print Fahrenheit-Celsius table
   for fahr = 0, 20, ..., 300º */
 
@@ -11,17 +17,23 @@ int main(){
   cel2fahr();
   return(0);
 }
+float convert_cel2fahr(float celsius){
+  float fahr = celsius * (9./5) + 32;
+  return(fahr);
+}
+
+float convert_fahr2cel(float fahr){
+
+  return((fahr - 32) * (5./9));
+}
+
 
 void fahr2cel()
 {
   float fahr, celsius;
   float lower, upper, step;
 
-  lower = 0;
-  upper = 300;
-  step  = 20;
-
-  fahr = upper; // type coercion
+  fahr = UPPER; // type coercion
   //char heading[80] = "\nFahrenheit to Celsius conversion table\n"
 
   for(int i = 0; i < 40; i++) printf("#");
@@ -29,10 +41,10 @@ void fahr2cel()
   for(int i = 0; i < 40; i++) printf("#");
   printf("\n");
 
-  while (fahr >= lower) {
-    celsius = (fahr - 32) * (5./9);
+  while (fahr >= LOWER) {
+    celsius = convert_fahr2cel(fahr);
     printf("%.0f\t%6.2f\n", fahr, celsius);
-    fahr = fahr - step;
+    fahr = fahr - STEP;
   }
   printf("\n");
 }
@@ -54,7 +66,7 @@ void cel2fahr(){
 
 
   while(celsius <= upper) {
-    fahr = celsius * (9./5) + 32;
+    fahr = convert_cel2fahr(celsius);
     printf("%.2f\t%6.2f\n", celsius, fahr);
     celsius += step;
   }
